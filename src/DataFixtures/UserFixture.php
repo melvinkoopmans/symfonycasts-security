@@ -23,6 +23,10 @@ class UserFixture extends BaseFixture
         $this->createMany(10, 'main_users', function($i) {
             $user = new User;
 
+            if ($this->faker->boolean) {
+                $user->setTwitterUsername($this->faker->userName);
+            }
+
             return $user->setEmail(sprintf('spacebar%d@example.com', $i))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'engage'))
                 ->setFirstName($this->faker->firstName);
