@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,5 +58,10 @@ class ApiToken
     public function getUser(): ?User
     {
         return $this->user;
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->getExpiresAt() <= new DateTime;
     }
 }
